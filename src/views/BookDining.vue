@@ -8,7 +8,35 @@
     <v-row>
       <v-col cols="12">
         <v-form ref="form" v-model="valid" lazy-validation>
-          <v-select
+           <v-text-field
+            v-model="firstname"
+            :rules="requiredRules"
+            label="First Name"
+            required
+            outlined
+          ></v-text-field>
+           <v-text-field
+            v-model="lastname"
+            :rules="requiredRules"
+            label="Last Name"
+            required
+            outlined
+          ></v-text-field>
+           <v-text-field
+            v-model="mobile"
+            :rules="requiredRules"
+            label="Mobile"
+            required
+            outlined
+          ></v-text-field>
+           <v-text-field
+            v-model="email"
+            :rules="requiredRules"
+            label="Email"
+            required
+            outlined
+          ></v-text-field>
+          <!-- <v-select
             v-model="select1"
             :items="items1"
             :rules="[(v) => !!v || 'Chef is required']"
@@ -23,7 +51,7 @@
             label="Select Menu"
             outlined
             required
-          ></v-select>
+          ></v-select> -->
 
           <v-row justify="center">
             <v-col cols="12">
@@ -36,15 +64,17 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
-                    v-model="date"
+                    v-model="datetime"
+                    :rules="requiredRules"
                     label="Picker Date"
                     prepend-icon="mdi-calendar"
                     readonly
                     v-bind="attrs"
                     v-on="on"
+                    required
                   ></v-text-field>
-                </template>
-                <v-date-picker v-model="date" scrollable>
+                </template> 
+                <v-date-picker v-model="datetime" scrollable>
                   <v-spacer></v-spacer>
                   <v-btn text color="normal" @click="modal = false">
                     Cancel
@@ -56,6 +86,13 @@
               </v-dialog>
             </v-col>
           </v-row>
+          <v-subheader class="pa-0">
+      </v-subheader>
+          <v-textarea
+            v-model="available"
+            label="Message"
+            outlined
+          ></v-textarea>
 
           <div style="text-align: center">
             <v-btn
@@ -71,9 +108,7 @@
       </v-col>
     </v-row>
   </v-container>
-</template>
-
-<script>
+  <!-- script
 export default {
   data: () => ({
     valid: true,
@@ -87,6 +122,30 @@ export default {
     menu: false,
     modal: false,
     menu2: false,
+  }),
+
+  methods: {
+    validate() {
+      const isValid = this.$refs.form.validate();
+      if (isValid) {
+        this.$router.push("/");
+      }
+    },
+  },
+};
+/script -->
+</template>
+
+<script>
+export default {
+  data: () => ({
+    valid: true,
+    firstname: "",
+    lastname: "",
+    mobile: "",
+    email: "",
+    datetime: "",
+    requiredRules: [(v) => !!v || "This field is required"],
   }),
 
   methods: {

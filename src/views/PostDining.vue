@@ -7,6 +7,7 @@
     </v-row>
     <v-row>
       <v-col cols="12">
+        <!-- ** into Dining table/Chef Profile table ** -->
         <v-form ref="form" v-model="valid" lazy-validation>
           <h3 class="mb-2" style="color: grey">Dining Menu Form</h3>
           <v-select
@@ -20,54 +21,89 @@
 
           <v-textarea
             v-model="description"
-            label="Menu description"
+            label="Menu List & Description"
             :rules="requiredRules"
+            required
             outlined
           ></v-textarea>
-
+           <v-text-field
+            v-model="price"
+            :rules="requiredRules"
+            label="Menu Title"
+            required
+            outlined
+          ></v-text-field>
           <v-text-field
             v-model="price"
             :rules="requiredRules"
-            label="Price"
+            label="Price (AU)"
             required
             outlined
           ></v-text-field>
-
           <v-text-field
-            v-model="time"
+            v-model="location"
             :rules="requiredRules"
-            label="Service Time"
+            label="Location"
             required
             outlined
           ></v-text-field>
-          <v-text-field
+      <v-subheader class="pa-0">
+       Let customers know what your schedule looks like and when you are available to provide this service.
+      </v-subheader>
+          <v-textarea
+            v-model="available"
+            :rules="requiredRules"
+            label="Set your Available Dining Day & Time"
+            required
+            outlined
+          ></v-textarea>
+          <v-alert
+      border="top"
+      colored-border
+      type="info"
+      elevation="2"
+      color="orange">
+Please note
+
+Customers will request to book your dining service. You’ll be notified of new booking requests and given the opportunity to confirm or reject the booking.
+
+You can ask questions and discuss requirements with the customer before making this decision.
+      </v-alert>
+          <!-- <v-text-field
             v-model="image"
             :rules="requiredRules"
-            label="Menu image (url)"
+            label="Main Image (url)"
             required
             outlined
-          ></v-text-field>
+          ></v-text-field> -->
 
           <h3 class="mb-2" style="color: grey">Chef Profile Form</h3>
 
           <v-text-field
-            v-model="nickname"
+            v-model="businessname"
             :rules="requiredRules"
-            label="Nickname"
+            label="Business or chef Name"
             required
             outlined
           ></v-text-field>
-          <v-text-field
+          <v-textarea
             v-model="experience"
             :rules="requiredRules"
             label="Experience"
             required
             outlined
-          ></v-text-field>
-          <v-text-field
+          ></v-textarea>
+          <v-textarea
             v-model="introduction"
             :rules="requiredRules"
-            label="Introduction"
+            label="Self-introduction"
+            required
+            outlined
+          ></v-textarea>
+          <v-text-field
+            v-model="contactnumber"
+            :rules="requiredRules"
+            label="Contact Number"
             required
             outlined
           ></v-text-field>
@@ -128,12 +164,14 @@ export default {
     valid: true,
     description: "",
     price: "",
-    time: "",
+    location: "",
+    available: "",
     image: "",
     //
-    nickname: "",
+    businessname: "",
     experience: "",
     introduction: "",
+    contactnumber:"",
     address: "",
     suburb: "",
     postcode: "",

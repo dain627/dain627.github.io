@@ -51,13 +51,12 @@
     </v-footer>
   </v-app>
 </template>
-
 <script>
 export default {
   name: "App",
 
   data: () => ({
-    //
+    
 
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
     drawer: false,

@@ -9,7 +9,7 @@
       <v-text-field
         v-model="name"
         :rules="nameRules"
-        label="Name"
+        label="User Name"
         required
         outlined
       ></v-text-field>

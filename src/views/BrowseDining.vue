@@ -1,109 +1,208 @@
 <template>
-<!-- This will be connected with the database on the backend -->
-  <v-container>
-    <v-row>
-      <v-col cols="12" style="text-align: center">
-        <h1>Browse Dining</h1>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12">
-        <v-carousel v-model="carousel">
-          <v-carousel-item
-            v-for="(item, i) in items"
-            :key="i"
-            :src="item.src"
-            reverse-transition="fade-transition"
-            transition="fade-transition"
-          ></v-carousel-item>
-        </v-carousel>
-      </v-col>
-      <v-col cols="12">
-        <v-card>
-          <v-card-title>{{ dinings[carousel].name }}</v-card-title>
-          <v-card-text>
-            <h3>Menus</h3>
-            <p>{{ String(dinings[carousel].menu) }}</p>
-            <h3>Location</h3>
-            <p>{{ dinings[carousel].location }}</p>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="12">
-        <v-card>
-          <v-img
-            height="250"
-            :src="chefs[carousel].image"
-            style="object-fit: cover"
-          ></v-img>
+  <v-card
+      :loading="loading"
+    class="mx-auto my-12"
+    max-width="374"
+  >
+  <!--Menu image here-->
+    <v-img
+      src="@/assets/food3.jpg"
+      height="200px"
+    >
+   <v-row>
+        <v-col cols="12" style="text-align: right"> 
+          <v-btn
+            dark
+            icon
+            class="mr-4"
+            @click="$router.push('/update')"
+          >
+            <v-icon>mdi-pencil</v-icon>
+          </v-btn>
 
-          <v-card-title>{{ chefs[carousel].name }}</v-card-title>
-          <v-card-text>{{ chefs[carousel].description }}</v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="12" style="text-align: center">
-        <v-btn color="normal" @click="$router.push('/book')">Book Now</v-btn>
+          <v-btn
+            dark
+            icon
+          >
+            <v-icon>mdi-delete</v-icon>
+          </v-btn>   
+        </v-col> 
+        </v-row>
+        </v-img>
+    
+    
+    <v-card-title>
+      Menu Title
+    </v-card-title>
+    <v-spacer></v-spacer>
+
+    <v-list-item>
+      <v-list-item-action>
+        <list-subtitle>
+          Category
+        </list-subtitle>
+      </v-list-item-action>
+      <v-list-item-content>
+      <v-card-subtitle>
+        Dining Category name here
+      </v-card-subtitle>
+      </v-list-item-content>
+     </v-list-item>
+      <v-list-item>
+      <v-list-item-action>
+        <list-subtitle>
+         Price(AU)
+        </list-subtitle>
+      </v-list-item-action>
+      <v-list-item-content>
+      <v-card-subtitle>
+          Dining Price here
+      </v-card-subtitle>
+      </v-list-item-content>
+     </v-list-item>
+      <v-list-item>
+      <v-list-item-action>
+        <list-subtitle>
+          Location
+        </list-subtitle>
+      </v-list-item-action>
+      <v-list-item-content>
+      <v-card-subtitle>
+        Location address here
+      </v-card-subtitle>
+      </v-list-item-content>
+     </v-list-item>
+    <!--<v-card-subtitle>
+      Available Time
+    </v-card-subtitle> -->
+    <v-card-actions>
+      <v-btn
+        color="gray"
+        text
+      >
+        Menu Description
+      </v-btn>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        icon
+        @click="show = !show"
+      >
+        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="show">
+        <v-divider></v-divider>
+
+        <v-card-text>
+          I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+        </v-card-text>
+      </div>
+    </v-expand-transition>
+       <v-card-actions>
+      <v-btn
+        color="gray"
+        text
+      >
+        Chef Profile
+      </v-btn>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        icon
+        @click="show2 = !show2"
+      >
+        <v-icon>{{ show2 ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="show2">
+        <v-divider></v-divider>
+
+        <v-card-text>
+         <v-row>
+      <v-col cols="12" >
+  <v-card
+    max-width="375"
+    class="mx-auto"
+  >
+  <!--identigy Photo here-->
+    <v-img
+      src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8Y2hlZnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60"
+      height="300px"
+      dark
+    >
+    </v-img>
+      <v-card-title>
+       Chef Name (Buciness name)
+      </v-card-title>
+    <v-spacer></v-spacer>
+
+    <v-list-item>
+      <v-list-item-action>
+        <list-subtitle>
+          Chef Introduction
+        </list-subtitle>
+      </v-list-item-action>
+      <v-list-item-content>
+      <v-card-subtitle>
+         Introduction here
+      </v-card-subtitle>
+      </v-list-item-content>
+     </v-list-item>
+      <v-list-item>
+      <v-list-item-action>
+        <list-subtitle>
+         Experience
+        </list-subtitle>
+      </v-list-item-action>
+      <v-list-item-content>
+      <v-card-subtitle>
+        Experience list here
+      </v-card-subtitle>
+      </v-list-item-content>
+     </v-list-item>
+      <v-list-item>
+      <v-list-item-action>
+        <list-subtitle>
+          Contact Number
+        </list-subtitle>
+      </v-list-item-action>
+      <v-list-item-content>
+      <v-card-subtitle>
+         Contact info here
+      </v-card-subtitle>
+      </v-list-item-content>
+     </v-list-item>
+
+  </v-card>
+  
+   
       </v-col>
     </v-row>
-  </v-container>
+        </v-card-text>
+      </div>
+    </v-expand-transition>
+
+    
+       <v-card-actions >
+         <v-col cols="12" style="text-align: center">
+       <v-btn color="normal" @click="$router.push('/book')">Book Now</v-btn>
+       </v-col>
+    </v-card-actions>
+  </v-card>
 </template>
-
 <script>
-export default {
-  data() {
-    return {
-      carousel: 0,
-      items: [
-        {
-          src: require("@/assets/food1.jpg"),
-        },
-        {
-          src: require("@/assets/food2.jpg"),
-        },
-        {
-          src: require("@/assets/food3.jpg"),
-        },
-      ],
-      dinings: [
-        {
-          name: "Dining name 1",
-          menu: ["menu1", "menu2", "menu3"],
-          location: "Underground",
-        },
-        {
-          name: "Dining name 2",
-          menu: ["menu4", "menu5", "menu6"],
-          location: "Underground",
-        },
-        {
-          name: "Dining name 3",
-          menu: ["menu7", "menu8", "menu9"],
-          location: "Underground",
-        },
-      ],
-      chefs: [
-        {
-          image:
-            "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8Y2hlZnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60",
-          name: "Chef 1",
-          description: "chef 1 description",
-        },
-        {
-          image:
-            "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8Y2hlZnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60",
-          name: "Chef 2",
-          description: "chef 2 description",
-        },
-        {
-          image:
-            "https://images.unsplash.com/photo-1566554273541-37a9ca77b91f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8Y2hlZnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60",
-          name: "Chef 3",
-          description: "chef 3 description",
-        },
-      ],
-    };
-  },
-};
+  export default {
+    data: () => ({
+      show: false,
+      show2: false,
+    }),
+  }
+  
 </script>
-
-<style></style>
