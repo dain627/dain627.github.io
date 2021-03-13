@@ -13,26 +13,14 @@
       <v-list-item three-line>
         <v-list-item-content>
         <v-card-text>
-         <h3>Chef Name</h3>
-        <p>{{ chefname }}</p>
-         <h3>Contact Number</h3>
-        <p>{{ contactnumber }}</p>
-         <h3>Email</h3>
-        <p>{{ email }}</p>
+         <h3>Business Name</h3>
+        <v-card-text>{{ chefname }}</v-card-text>
         <h3>Experience</h3>
-        <p>{{ experience }}</p>
+        <v-card-text>{{ experience }}</v-card-text>
         <h3>Introduction</h3>
-        <p>{{ introduction }}</p>
-        <h3>Contact Number</h3>
-        <p>{{ contactnumber }}</p>
-        <h3>Address</h3>
-        <p>{{ address }}</p>
-         <h3>Suburb</h3>
-        <p>{{ suburb }}</p>
-         <h3>Postcode</h3>
-        <p>{{ postcode }}</p>
-         <h3>State</h3>
-        <p>{{ state }}</p>
+        <v-card-text>{{ introduction }}</v-card-text>
+        <h3>Business Number</h3>
+        <v-card-text>{{ businessnumber }}</v-card-text>
       </v-card-text>
         </v-list-item-content>
       </v-list-item>
@@ -84,14 +72,14 @@
             </v-card-title>
 
             <!----------------- Edit Table Data ------------------->
-            <v-card-text>
+            <!-- <v-card-text>
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field v-model="editedItem.roomimage" label="Menu Title"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field v-model="editedItem.roomimage" label="First Name"></v-text-field>
+                    <v-text-field v-model="editedItem.roomimage" label="Reservation Name List"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field v-model="editedItem.roomtype" label="Last Name"></v-text-field>
@@ -110,7 +98,7 @@
                   </v-col>
                 </v-row>
               </v-container>
-            </v-card-text>
+            </v-card-text> -->
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
@@ -150,13 +138,17 @@
       dialogDelete: false,
       // data search
       search: '',
+      //chef profile
       avatar:
         "https://www.epicure.com.au/wp-content/uploads/2017/08/ben_swinbourne_resized.png",
       chefname:'Chef Name here',
+      experience: 'CV here',
+      introduction:'introduction here',
+      businessnumber:'Contact number here',
+      //booking list
       headers: [
         { text: 'Menu Title', value: 'menutitle' },
-        { text: 'First Name', value: 'firstname' },
-        { text: 'Last Name', value: 'lastname' },
+        { text: 'Reservation Name List', value: 'fullname' },
         { text: 'Booking Date', value: 'bookingdate' },
         { text: 'Mobile', value: 'mobile' },
         { text: 'Email', value: 'email' },
@@ -205,8 +197,8 @@
         this.BookingCustomerList = [
           {
             menutitle:'Dinner Special Four Course',
-            firstname: 'Dain',
-            lastname: 'Hong',
+            fullname: 'Dain Hong',
+            // lastname: 'Hong',
             bookingdate: '09/03/21',
             mobile: '0400 000 000',
             email: 'dainhong@gmail.com',
@@ -214,8 +206,8 @@
           },
           {
             menutitle:'Dinner Special Three Course',
-            firstname: 'Dain',
-            lastname: 'Kim',
+            fullname: 'Wiwin NG',
+            // lastname: 'Kim ',
             bookingdate: '10/03/21',
             mobile: '0400 000 000',
             email: 'dainhong@gmail.com',
@@ -223,29 +215,29 @@
           },
           {
             menutitle:'High Tea Three Course',
-            firstname: 'Dain',
-            lastname: 'Lee',
+            fullname: 'Nancy Lee',
+            // lastname: 'Lee',
             bookingdate: '09/03/21',
                       mobile: '0400 000 000',
             email: 'dainhong@gmail.com',
-            note: 'Lunch 12pm'
+            note: 'Lunch 12pm, celiac-glutenfree',
           },
           {
             menutitle:'High Tea Three Course',
-            firstname: 'Dain',
-            lastname: 'Huang',
+            fullname: 'Jain Johnson',
+            // lastname: 'Huang',
             bookingdate: '09/03/21',
                     mobile: '0400 000 000',
             email: 'dainhong@gmail.com',
-            note: 'Brunch 10:30am'
+            note: 'Brunch 10:30am, 1 vegan'
           },
         ]
       },
-      editItem (item) {
-        this.editedIndex = this.BookingCustomerList.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialog = true
-      },
+      // editItem (item) {
+      //   this.editedIndex = this.BookingCustomerList.indexOf(item)
+      //   this.editedItem = Object.assign({}, item)
+      //   this.dialog = true
+      // },
       deleteItem (item) {
         this.editedIndex = this.BookingCustomerList.indexOf(item)
         this.editedItem = Object.assign({}, item)
@@ -269,14 +261,14 @@
           this.editedIndex = -1
         })
       },
-      save () {
-        if (this.editedIndex > -1) {
-          Object.assign(this.BookingCustomerList[this.editedIndex], this.editedItem)
-        } else {
-          this.desserts.push(this.editedItem)
-        }
-        this.close()
-      },
+      // save () {
+      //   if (this.editedIndex > -1) {
+      //     Object.assign(this.BookingCustomerList[this.editedIndex], this.editedItem)
+      //   } else {
+      //     this.desserts.push(this.editedItem)
+      //   }
+      //   this.close()
+      // },
     },
   }
 </script>

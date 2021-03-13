@@ -18,7 +18,13 @@
             outlined
             required
           ></v-select>
-
+            <v-text-field
+            v-model="image"
+            :rules="requiredRules"
+            label="Menu Image (url)"
+            required
+            outlined
+          ></v-text-field>
           <v-textarea
             v-model="description"
             label="Menu List & Description"

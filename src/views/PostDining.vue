@@ -7,7 +7,7 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <!-- ** into Dining table/Chef Profile table ** -->
+        <!--  into Dining table -->
         <v-form ref="form" v-model="valid" lazy-validation>
           <h3 class="mb-2" style="color: grey">Dining Menu Form</h3>
           <v-select
@@ -18,7 +18,20 @@
             outlined
             required
           ></v-select>
-
+          <v-text-field
+            v-model="image"
+            :rules="requiredRules"
+            label="Menu Image (url)"
+            required
+            outlined
+          ></v-text-field>
+          <v-text-field
+            v-model="price"
+            :rules="requiredRules"
+            label="Menu Title"
+            required
+            outlined
+          ></v-text-field>
           <v-textarea
             v-model="description"
             label="Menu List & Description"
@@ -26,13 +39,6 @@
             required
             outlined
           ></v-textarea>
-           <v-text-field
-            v-model="price"
-            :rules="requiredRules"
-            label="Menu Title"
-            required
-            outlined
-          ></v-text-field>
           <v-text-field
             v-model="price"
             :rules="requiredRules"
@@ -51,9 +57,9 @@
        Let customers know what your schedule looks like and when you are available to provide this service.
       </v-subheader>
           <v-textarea
-            v-model="available"
+            v-model="availability"
             :rules="requiredRules"
-            label="Set your Available Dining Day & Time"
+            label="Set your Available Dining Date & Time"
             required
             outlined
           ></v-textarea>
@@ -69,13 +75,7 @@ Customers will request to book your dining service. You’ll be notified of new 
 
 You can ask questions and discuss requirements with the customer before making this decision.
       </v-alert>
-          <!-- <v-text-field
-            v-model="image"
-            :rules="requiredRules"
-            label="Main Image (url)"
-            required
-            outlined
-          ></v-text-field> -->
+      <!--i nto Chef Profile table -->
 
           <h3 class="mb-2" style="color: grey">Chef Profile Form</h3>
 
@@ -103,11 +103,11 @@ You can ask questions and discuss requirements with the customer before making t
           <v-text-field
             v-model="contactnumber"
             :rules="requiredRules"
-            label="Contact Number"
+            label="Business Number"
             required
             outlined
           ></v-text-field>
-          <v-text-field
+          <!-- <v-text-field
             v-model="address"
             :rules="requiredRules"
             label="Address"
@@ -134,7 +134,7 @@ You can ask questions and discuss requirements with the customer before making t
             label="State"
             required
             outlined
-          ></v-text-field>
+          ></v-text-field> -->
           <v-text-field
             v-model="photo"
             :rules="requiredRules"
@@ -165,17 +165,13 @@ export default {
     description: "",
     price: "",
     location: "",
-    available: "",
+    availability: "",
     image: "",
     //
     businessname: "",
     experience: "",
     introduction: "",
     contactnumber:"",
-    address: "",
-    suburb: "",
-    postcode: "",
-    state: "",
     photo: "",
     //
     requiredRules: [(v) => !!v || "This field is required"],

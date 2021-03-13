@@ -9,19 +9,19 @@
       <v-col cols="12">
         <v-form ref="form" v-model="valid" lazy-validation>
            <v-text-field
-            v-model="firstname"
+            v-model="fullname"
             :rules="requiredRules"
-            label="First Name"
+            label="Full Name"
             required
             outlined
           ></v-text-field>
-           <v-text-field
+           <!-- <v-text-field
             v-model="lastname"
             :rules="requiredRules"
             label="Last Name"
             required
             outlined
-          ></v-text-field>
+          ></v-text-field> -->
            <v-text-field
             v-model="mobile"
             :rules="requiredRules"
@@ -140,8 +140,7 @@ export default {
 export default {
   data: () => ({
     valid: true,
-    firstname: "",
-    lastname: "",
+    fullname: "",
     mobile: "",
     email: "",
     datetime: "",

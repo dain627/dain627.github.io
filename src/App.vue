@@ -4,20 +4,11 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <img src="@/assets/logo2_w.png" style="height: 32px;" />
       <v-spacer />
-
-      <!-- <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn> -->
       <v-btn text @click="$router.push('/login')">
         Login / Join
       </v-btn>
     </v-app-bar>
-
+    <!-- Menu navigation action -->
     <v-navigation-drawer app v-model="drawer">
       <v-list-item>
         <img class="my-2" src="@/assets/logo2_b.png" height="38px;" />
@@ -30,7 +21,6 @@
           <!-- <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon> -->
-
           <v-list-item-content @click="$router.push(item.link)">
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
@@ -57,13 +47,17 @@ export default {
 
   data: () => ({
     
-
-    icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
+    // icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
     drawer: false,
     items: [
       {
         title: "Home",
         link: "/",
+      },
+      // if access as a login user, hide this menu link
+       {
+        title: "Registration",
+        link: "/signup",
       },
       {
         title: "Post Dining",
@@ -76,10 +70,6 @@ export default {
       {
         title: "My Dining",
         link: "/my",
-      },
-      {
-        title: "Book Dining",
-        link: "/book",
       },
     ],
   }),

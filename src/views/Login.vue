@@ -34,10 +34,10 @@
         </v-btn>
         <v-btn @click="$router.push('/signup')">Sign up</v-btn>
       </div>
-
       <!-- <v-btn color="error" class="mr-4" @click="reset">
         Reset Form
       </v-btn> -->
+      
     </v-form>
   </v-container>
 </template>
@@ -68,10 +68,10 @@ export default {
         this.$router.push("/");
       }
     },
-    reset() {
-      this.$refs.form.reset();
-      this.$refs.form.resetValidation();
-    },
+    // reset() {
+    //   this.$refs.form.reset();
+    //   this.$refs.form.resetValidation();
+    // },
   },
 };
 </script>

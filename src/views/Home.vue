@@ -13,6 +13,7 @@
           justify="center"
         >
           <v-col cols="12" style="text-align: center; margin:0 0 2em 0;">
+            <!-- if access as login user, hide this button -->
         <v-btn color="normal" @click="$router.push('/signup')">Get Stared Now</v-btn>
         </v-col>
         </v-row>
@@ -31,9 +32,9 @@
         <img src="@/assets/image1.jpg" width="100%" />
       </v-col>
       <v-col cols="12" style="text-align: center">
-         <!-- 게스트로 접속상태 일때-->
+         <!-- access as non-member user or customer-member user -->
         <v-btn color="normal" @click="$router.push('/signup')">Post Dining</v-btn>
-        <!-- 쉐프멤버로그인상태일때
+        <!-- access as Chef-member user 
         <v-btn color="normal" @click="$router.push('/post')">Post Dining</v-btn>-->
       </v-col>
     </v-row>
