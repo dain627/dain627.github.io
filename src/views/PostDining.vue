@@ -11,6 +11,7 @@
         <v-form ref="form" v-model="valid" lazy-validation>
           <h3 class="mb-2" style="color: grey">Dining Menu Form</h3>
           <v-select
+            name="dining_category"
             v-model="select"
             :items="items"
             :rules="[(v) => !!v || 'Item is required']"
@@ -19,6 +20,7 @@
             required
           ></v-select>
           <v-text-field
+            name="menu_image"
             v-model="image"
             :rules="requiredRules"
             label="Menu Image (url)"
@@ -26,6 +28,7 @@
             outlined
           ></v-text-field>
           <v-text-field
+            name="menu_title"
             v-model="price"
             :rules="requiredRules"
             label="Menu Title"
@@ -33,6 +36,7 @@
             outlined
           ></v-text-field>
           <v-textarea
+            name="menu_description"
             v-model="description"
             label="Menu List & Description"
             :rules="requiredRules"
@@ -40,6 +44,7 @@
             outlined
           ></v-textarea>
           <v-text-field
+            name="price"
             v-model="price"
             :rules="requiredRules"
             label="Price (AU)"
@@ -47,6 +52,7 @@
             outlined
           ></v-text-field>
           <v-text-field
+            name="location"
             v-model="location"
             :rules="requiredRules"
             label="Location"
@@ -80,6 +86,7 @@ You can ask questions and discuss requirements with the customer before making t
           <h3 class="mb-2" style="color: grey">Chef Profile Form</h3>
 
           <v-text-field
+            name="business_name"
             v-model="businessname"
             :rules="requiredRules"
             label="Business or chef Name"
@@ -87,6 +94,7 @@ You can ask questions and discuss requirements with the customer before making t
             outlined
           ></v-text-field>
           <v-textarea
+            name="experience"
             v-model="experience"
             :rules="requiredRules"
             label="Experience"
@@ -94,6 +102,7 @@ You can ask questions and discuss requirements with the customer before making t
             outlined
           ></v-textarea>
           <v-textarea
+            name="introduction"
             v-model="introduction"
             :rules="requiredRules"
             label="Self-introduction"
@@ -101,6 +110,7 @@ You can ask questions and discuss requirements with the customer before making t
             outlined
           ></v-textarea>
           <v-text-field
+            name="business_number"
             v-model="contactnumber"
             :rules="requiredRules"
             label="Business Number"
@@ -136,6 +146,7 @@ You can ask questions and discuss requirements with the customer before making t
             outlined
           ></v-text-field> -->
           <v-text-field
+            name="identify_photo"
             v-model="photo"
             :rules="requiredRules"
             label="Identify Photo (url)"
@@ -159,6 +170,7 @@ You can ask questions and discuss requirements with the customer before making t
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data: () => ({
     valid: true,
@@ -183,8 +195,27 @@ export default {
     validate() {
       const isValid = this.$refs.form.validate();
       if (isValid) {
-        this.$router.push("/");
+        //define api
+          axios.post('http://localhost:8090/api/', new FormData(this.$refs.form.$el))
+        .then(function (response) {
+
+          console.log(response);
+          this.$router.push("/");
+          
+        })
+        .catch(function (error) {
+          const errors = error.response.data.errors;
+          alert(
+
+            errors[Object.keys(errors)[0]][0]
+          );
+        });
+        // this.$router.push("/");
       }
+    },
+    reset() {
+      this.$refs.form.reset();
+      this.$refs.form.resetValidation();
     },
   },
 };

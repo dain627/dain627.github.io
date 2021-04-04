@@ -7,6 +7,7 @@
     </v-row>
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
+        name="user_id"
         v-model="name"
         :rules="nameRules"
         label="User Name"
@@ -15,6 +16,7 @@
       ></v-text-field>
 
       <v-text-field
+        name="password"
         v-model="password"
         :rules="passwordRules"
         label="Password"
@@ -24,6 +26,7 @@
       ></v-text-field>
 
       <v-text-field
+        name="first_name"
         v-model="firstName"
         :rules="requiredRules"
         label="First Name"
@@ -32,6 +35,7 @@
       ></v-text-field>
 
       <v-text-field
+        name="last_name"
         v-model="lastName"
         :rules="requiredRules"
         label="Last Name"
@@ -39,6 +43,7 @@
         outlined
       ></v-text-field>
       <v-text-field
+        name="email"
         v-model="email"
         :rules="emailRules"
         label="Email"
@@ -46,6 +51,7 @@
         outlined
       ></v-text-field>
       <v-text-field
+        name="contact_number"
         v-model="contact"
         :rules="requiredRules"
         label="Contact Number"
@@ -54,6 +60,7 @@
       ></v-text-field>
 
       <v-select
+        name="user_type"
         v-model="select"
         :items="items"
         :rules="[(v) => !!v || 'Item is required']"
@@ -81,13 +88,14 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data: () => ({
     valid: true,
     name: "",
     nameRules: [
       (v) => !!v || "Name is required",
-      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
+      (v) => (v && v.length <= 12) || "Name must be less than 10 characters",
     ],
     password: "",
     passwordRules: [
@@ -104,14 +112,28 @@ export default {
     email: "",
     contact: "",
     select: null,
-    items: ["Chef", "Customer"],
+    items: ["chef", "customer"],
   }),
 
   methods: {
     validate() {
       const isValid = this.$refs.form.validate();
       if (isValid) {
-        this.$router.push("/");
+        axios.post('http://localhost:8090/api/user', new FormData(this.$refs.form.$el))
+        .then(function (response) {
+
+          console.log(response);
+          this.$router.push("/");
+          
+        })
+        .catch(function (error) {
+          const errors = error.response.data.errors;
+          alert(
+
+            errors[Object.keys(errors)[0]][0]
+          );
+        });
+        
       }
     },
     reset() {

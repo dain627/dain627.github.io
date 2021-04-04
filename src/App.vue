@@ -7,6 +7,10 @@
       <v-btn text @click="$router.push('/login')">
         Login / Join
       </v-btn>
+      <!-- if a user wants to logout after login. -->
+      <!-- <v-btn text @click="$router.push('/')">
+        Logout
+      </v-btn> -->
     </v-app-bar>
     <!-- Menu navigation action -->
     <v-navigation-drawer app v-model="drawer">
