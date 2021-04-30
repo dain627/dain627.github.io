@@ -29,7 +29,7 @@
           ></v-text-field>
           <v-text-field
             name="menu_title"
-            v-model="price"
+            v-model="title"
             :rules="requiredRules"
             label="Menu Title"
             required
@@ -83,7 +83,7 @@ You can ask questions and discuss requirements with the customer before making t
       </v-alert>
       <!--i nto Chef Profile table -->
 
-          <h3 class="mb-2" style="color: grey">Chef Profile Form</h3>
+          <!-- <h3 class="mb-2" style="color: grey">Chef Profile Form</h3>
 
           <v-text-field
             name="business_name"
@@ -116,7 +116,7 @@ You can ask questions and discuss requirements with the customer before making t
             label="Business Number"
             required
             outlined
-          ></v-text-field>
+          ></v-text-field> -->
           <!-- <v-text-field
             v-model="address"
             :rules="requiredRules"
@@ -145,14 +145,14 @@ You can ask questions and discuss requirements with the customer before making t
             required
             outlined
           ></v-text-field> -->
-          <v-text-field
+          <!-- <v-text-field
             name="identify_photo"
             v-model="photo"
             :rules="requiredRules"
             label="Identify Photo (url)"
             required
             outlined
-          ></v-text-field>
+          ></v-text-field> -->
           <div style="text-align: center">
             <v-btn
               :disabled="!valid"
@@ -174,17 +174,18 @@ import axios from 'axios';
 export default {
   data: () => ({
     valid: true,
+    title:"",
     description: "",
     price: "",
     location: "",
     availability: "",
     image: "",
-    //
-    businessname: "",
-    experience: "",
-    introduction: "",
-    contactnumber:"",
-    photo: "",
+    // //
+    // businessname: "",
+    // experience: "",
+    // introduction: "",
+    // contactnumber:"",
+    // photo: "",
     //
     requiredRules: [(v) => !!v || "This field is required"],
     select: null,
@@ -196,7 +197,7 @@ export default {
       const isValid = this.$refs.form.validate();
       if (isValid) {
         //define api
-          axios.post('http://localhost:8090/api/', new FormData(this.$refs.form.$el))
+          axios.post('http://localhost:8090/api/dining/menu', new FormData(this.$refs.form.$el))
         .then(function (response) {
 
           console.log(response);
@@ -213,10 +214,10 @@ export default {
         // this.$router.push("/");
       }
     },
-    reset() {
-      this.$refs.form.reset();
-      this.$refs.form.resetValidation();
-    },
+    // reset() {
+    //   this.$refs.form.reset();
+    //   this.$refs.form.resetValidation();
+    // },
   },
 };
 </script>

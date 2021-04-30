@@ -33,7 +33,7 @@
             outlined
           ></v-textarea>
            <v-text-field
-            v-model="price"
+            v-model="title"
             :rules="requiredRules"
             label="Menu Title"
             required
@@ -91,6 +91,7 @@ export default {
   data: () => ({
     valid: true,
     description: "",
+    title:"",
     price: "",
     location: "",
     available: "",
@@ -114,7 +115,7 @@ export default {
     validate() {
       const isValid = this.$refs.form.validate();
       if (isValid) {
-        this.$router.push("/");
+        this.$router.push("/browse");
       }
     },
   },

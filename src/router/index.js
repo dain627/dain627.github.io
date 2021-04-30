@@ -5,6 +5,7 @@ import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import BrowseDining from "../views/BrowseDining.vue";
 import PostDining from "../views/PostDining.vue";
+import ChefProfile from "../views/ChefProfile.vue";
 import MyDining from "../views/MyDining.vue";
 import BookDining from "../views/BookDining.vue";
 import Update from "../views/Update.vue";
@@ -32,6 +33,11 @@ const routes = [{
         path: "/browse",
         name: "BrowseDining",
         component: BrowseDining,
+    },
+    {
+        path: "/profile",
+        name: "ChefProfile",
+        component: ChefProfile,
     },
     {
         path: "/post",

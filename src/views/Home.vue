@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" style="text-align: center; ">
-        <h2>Welcome To Underground Dining World</h2>
+        <!-- <h2>Welcome To Underground Dining World</h2> -->
       </v-col>
       <v-col cols="12">
         <v-img src="@/assets/image3.png" alt="" width="100%" height="300">
@@ -14,7 +14,8 @@
         >
           <v-col cols="12" style="text-align: center; margin:0 0 2em 0;">
             <!-- if access as login user, hide this button -->
-        <v-btn color="normal" @click="$router.push('/signup')">Get Stared Now</v-btn>
+         <v-btn v-if="accessToken == null" color="normal" @click="$router.push('/signup')">Get Stared Now</v-btn>
+        <h1 v-else color="normal" background="#E0E0E0">Welcome To Underground Dining World</h1>
         </v-col>
         </v-row>
         </template>
@@ -33,7 +34,8 @@
       </v-col>
       <v-col cols="12" style="text-align: center">
          <!-- access as non-member user or customer-member user -->
-        <v-btn color="normal" @click="$router.push('/signup')">Post Dining</v-btn>
+        <v-btn v-if="accessToken !== null" color="normal" @click="$router.push('/post')">Post Dining</v-btn>
+        <v-btn v-else color="normal" @click="$router.push('/signup')">Post Dining</v-btn>
         <!-- access as Chef-member user 
         <v-btn color="normal" @click="$router.push('/post')">Post Dining</v-btn>-->
       </v-col>
@@ -55,6 +57,16 @@
 </template>
 
 <script>
+export default{
+
+   data: () => ({
+    
+    drawer: false,
+    accessToken : localStorage.getItem('token'),
+ 
+  }),
+}
+
 </script>
 
 <style></style>

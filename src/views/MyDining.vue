@@ -2,9 +2,29 @@
 <template>
   <div class="mydining">
     <!----------------My Infomation ----------------->
+    
      <v-container>
       <v-card class="mx-auto" outlined>
-      <v-card-title>My Information</v-card-title>
+      <v-card-title>My Profile</v-card-title>
+       <v-row>
+        <v-col cols="12" style="text-align: right"> 
+          <v-btn
+            dark
+            icon
+            class="mr-4"
+            @click="$router.push('/profile')"
+          >
+            <v-icon color="black">mdi-pencil</v-icon>
+          </v-btn>
+
+          <v-btn
+            dark
+            icon
+          >
+            <v-icon color="black">mdi-delete</v-icon>
+          </v-btn>   
+        </v-col> 
+        </v-row>
         <v-col cols="12" style="text-align: center">
         <v-list-item-avatar size="150">
           <v-img :src="avatar"></v-img>

@@ -8,8 +8,8 @@
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
         name="user_id"
-        v-model="name"
-        :rules="nameRules"
+        v-model="uname"
+        :rules="unameRules"
         label="User Name"
         required
         outlined
@@ -89,11 +89,12 @@
 
 <script>
 import axios from 'axios';
+// import Loading from "../components/Loading";
 export default {
   data: () => ({
     valid: true,
-    name: "",
-    nameRules: [
+    uname: "",
+    unameRules: [
       (v) => !!v || "Name is required",
       (v) => (v && v.length <= 12) || "Name must be less than 10 characters",
     ],
@@ -102,6 +103,7 @@ export default {
       (v) => !!v || "Password is required",
       (v) => (v && v.length >= 8) || "Password must be more than 8 characters",
     ],
+    email: "",
     emailRules: [
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
@@ -109,7 +111,6 @@ export default {
     requiredRules: [(v) => !!v || "This field is required"],
     firstName: "",
     lastName: "",
-    email: "",
     contact: "",
     select: null,
     items: ["chef", "customer"],
@@ -122,24 +123,27 @@ export default {
         axios.post('http://localhost:8090/api/user', new FormData(this.$refs.form.$el))
         .then(function (response) {
 
+          alert("Thank you for joining us!");
+          history.back();
+          // location.herf = $router.push("/login");
+          // 레지스터 성공시에 알람이 뜨면서 로그인 페이지로 넘어가기
+          // self.$router.push("/login");
+          //this.$router.push("/login")
           console.log(response);
-          this.$router.push("/");
-          
+
         })
         .catch(function (error) {
           const errors = error.response.data.errors;
           alert(
-
             errors[Object.keys(errors)[0]][0]
           );
         });
-        
       }
     },
-    reset() {
-      this.$refs.form.reset();
-      this.$refs.form.resetValidation();
-    },
+    // reset() {
+    //   this.$refs.form.reset();
+    //   this.$refs.form.resetValidation();
+    // },
   },
 };
 </script>
