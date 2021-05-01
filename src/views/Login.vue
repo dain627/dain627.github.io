@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <!-- <Loading v-if="loading" /> -->
+        <Loading v-if="loading" />
         <v-row class="my-6">
             <v-col cols="12" style="text-align: center">
                 <h1>Login</h1>
@@ -43,7 +43,7 @@
 
 <script>
 import axios from "axios";
-// import Loading from "../components/Loading";
+import Loading from "../components/Loading";
 // import Vue from "vue";
 export default {
     data: () => ({
@@ -62,22 +62,21 @@ export default {
                 (v && v.length >= 8) ||
                 "Password must be more than 8 characters",
         ],
-        // loading: false,
+        loading: false,
     }),
-    // components: { Loading },
+    components: { Loading },
     methods: {
         validate() {
             const isValid = this.$refs.form.validate();
             if (isValid) {
                 const self = this;
-                // this.loading = true;
+                this.loading = true;
                 axios
                     .post(
                         "http://localhost:8090/api/user/login",
                         new FormData(this.$refs.form.$el)
                     )
                     .then(function(response) {
-                        // this.loading = false;
                         if (response.data.login) {
                             // save the user log state(as JWT) in browser(chrome) storage instead of SESSION
                             //(method) Storage.setItem(key: string, value: string)
@@ -94,14 +93,15 @@ export default {
                         } else {
                             alert("Check Your Username or Password !");
                         }
+                        this.loading = false;
                     })
                     .catch(function(error) {
-                        this.loading = false;
                         console.dir(error);
                         const errors = error.response.data.errors;
 
                         alert(errors[Object.keys(errors)[0]][0]);
                         console.log(errors);
+                        this.loading = false;
                     });
                 // this.$router.push("/login");
             }
