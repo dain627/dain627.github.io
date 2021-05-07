@@ -10,8 +10,6 @@ import MyDining from "../views/MyDining.vue";
 import BookDining from "../views/BookDining.vue";
 import Update from "../views/Update.vue";
 
-
-
 Vue.use(VueRouter);
 
 const routes = [{
@@ -50,15 +48,15 @@ const routes = [{
         component: MyDining,
     },
     {
-        path: "/book",
+        path: "/book/:id",
         name: "BookDining",
         component: BookDining,
     },
     {
-        path: "/update",
+        path: "/update/:id",
         name: "Update",
         component: Update,
-    }
+    },
 ];
 
 const router = new VueRouter({

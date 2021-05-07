@@ -42,9 +42,9 @@
 </template>
 
 <script>
-import axios from "axios";
 import Loading from "../components/Loading";
-// import Vue from "vue";
+import { loginApi } from "../libs/api/index.js";
+
 export default {
     data: () => ({
         valid: true,
@@ -70,13 +70,10 @@ export default {
             const isValid = this.$refs.form.validate();
             if (isValid) {
                 const self = this;
+                const formData = new FormData(this.$refs.form.$el);
                 this.loading = true;
-                axios
-                    .post(
-                        "http://localhost:8090/api/user/login",
-                        new FormData(this.$refs.form.$el)
-                    )
-                    .then(function(response) {
+                loginApi(formData)
+                    .then((response) => {
                         if (response.data.login) {
                             // save the user log state(as JWT) in browser(chrome) storage instead of SESSION
                             //(method) Storage.setItem(key: string, value: string)
@@ -93,15 +90,15 @@ export default {
                         } else {
                             alert("Check Your Username or Password !");
                         }
+                        this.$store.state.isLogined = true;
                         this.loading = false;
                     })
-                    .catch(function(error) {
-                        console.dir(error);
-                        const errors = error.response.data.errors;
-
-                        alert(errors[Object.keys(errors)[0]][0]);
-                        console.log(errors);
+                    .catch((error) => {
                         this.loading = false;
+                        if (error.response.data) {
+                            const errors = error.response.data.errors;
+                            alert(errors[Object.keys(errors)[0]][0]);
+                        }
                     });
                 // this.$router.push("/login");
             }

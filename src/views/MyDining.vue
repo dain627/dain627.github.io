@@ -1,52 +1,48 @@
-
 <template>
-  <div class="mydining">
-    <!----------------My Infomation ----------------->
-    
-     <v-container>
-      <v-card class="mx-auto" outlined>
-      <v-card-title>My Profile</v-card-title>
-       <v-row>
-        <v-col cols="12" style="text-align: right"> 
-          <v-btn
-            dark
-            icon
-            class="mr-4"
-            @click="$router.push('/profile')"
-          >
-            <v-icon color="black">mdi-pencil</v-icon>
-          </v-btn>
+    <div class="mydining">
+        <!----------------My Infomation ----------------->
 
-          <v-btn
-            dark
-            icon
-          >
-            <v-icon color="black">mdi-delete</v-icon>
-          </v-btn>   
-        </v-col> 
-        </v-row>
-        <v-col cols="12" style="text-align: center">
-        <v-list-item-avatar size="150">
-          <v-img :src="avatar"></v-img>
-        </v-list-item-avatar>
-        </v-col>
-      <v-list-item three-line>
-        <v-list-item-content>
-        <v-card-text>
-         <h3>Business Name</h3>
-        <v-card-text>{{ chefname }}</v-card-text>
-        <h3>Experience</h3>
-        <v-card-text>{{ experience }}</v-card-text>
-        <h3>Introduction</h3>
-        <v-card-text>{{ introduction }}</v-card-text>
-        <h3>Business Number</h3>
-        <v-card-text>{{ businessnumber }}</v-card-text>
-      </v-card-text>
-        </v-list-item-content>
-      </v-list-item>
-    </v-card>
+        <v-container>
+            <v-card class="mx-auto" outlined>
+                <v-card-title>My Profile</v-card-title>
+                <v-row>
+                    <v-col cols="12" style="text-align: right">
+                        <v-btn
+                            dark
+                            icon
+                            class="mr-4"
+                            @click="$router.push('/profile')"
+                        >
+                            <v-icon color="black">mdi-pencil</v-icon>
+                        </v-btn>
 
-    <!-- <v-card class="my-4" outlined>
+                        <v-btn dark icon>
+                            <v-icon color="black">mdi-delete</v-icon>
+                        </v-btn>
+                    </v-col>
+                </v-row>
+                <v-col cols="12" style="text-align: center">
+                    <v-list-item-avatar size="150">
+                        <v-img :src="avatar"></v-img>
+                    </v-list-item-avatar>
+                </v-col>
+                <v-list-item three-line>
+                    <v-list-item-content>
+                        <v-card-text>
+                            <h3>Business Name</h3>
+                            <v-card-text name="businessname">{{ chefname }}</v-card-text>
+                            <h3>Experience</h3>
+                            <v-card-text name="experience">{{ experience }}</v-card-text>
+                            <h3>Introduction</h3>
+                            <v-card-text name="introduction">{{ introduction }}</v-card-text>
+                            <h3>Business Number</h3>
+                            <v-card-text name="businessnumber">{{ businessnumber }}</v-card-text>
+                        </v-card-text>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-card>
+
+            <!-- <v-card class="my-4" outlined>
       <v-card-title>My Dining Service</v-card-title>
       <v-card-text>
          <h3>Chef Name</h3>
@@ -69,30 +65,40 @@
         <p>{{ state }}</p>
       </v-card-text>
     </v-card> -->
+        </v-container>
 
-  </v-container>  
-   
-    <!----------------Booking CRUD Table ----------------->
-    <v-data-table :headers="headers" :items="BookingCustomerList" :search="search" class="elevation-1">
-    <template v-slot:top>
-       <v-card-title>Current Booked Customers</v-card-title>
-      <v-toolbar flat>
-        <!-- <v-toolbar-title class="subtitle-2">booking list</v-toolbar-title> -->
-        <v-spacer></v-spacer>
-        <!--------- Search data table ---------->
-        <v-card-title>
-            <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
-            <v-divider class="mx-2" inset vertical></v-divider>
-        </v-card-title>
-        
-        <v-dialog v-model="dialog" max-width="500px">
-          <v-card>
-            <v-card-title>
-              <span class="headline">{{ formTitle }}</span>
-            </v-card-title>
+        <!----------------Booking CRUD Table ----------------->
+        <v-data-table
+            :headers="headers"
+            :items="$store.state.bookingCustomerList"
+            :search="search"
+            class="elevation-1"
+        >
+            <template v-slot:top>
+                <v-card-title>Current Booked Customers</v-card-title>
+                <v-toolbar flat>
+                    <!-- <v-toolbar-title class="subtitle-2">booking list</v-toolbar-title> -->
+                    <v-spacer></v-spacer>
+                    <!--------- Search data table ---------->
+                    <v-card-title>
+                        <v-text-field
+                            v-model="search"
+                            append-icon="mdi-magnify"
+                            label="Search"
+                            single-line
+                            hide-details
+                        ></v-text-field>
+                        <v-divider class="mx-2" inset vertical></v-divider>
+                    </v-card-title>
 
-            <!----------------- Edit Table Data ------------------->
-            <!-- <v-card-text>
+                    <v-dialog v-model="dialog" max-width="500px">
+                        <v-card>
+                            <v-card-title>
+                                <span class="headline">{{ formTitle }}</span>
+                            </v-card-title>
+
+                            <!----------------- Edit Table Data ------------------->
+                            <!-- <v-card-text>
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
@@ -119,176 +125,217 @@
                 </v-row>
               </v-container>
             </v-card-text> -->
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-          <!----------------- Delete Table Data ------------------->
-        <v-dialog v-model="dialogDelete" max-width="500px">
-          <v-card>
-            <v-card-title class="headline">Are you sure you want to delete this item?</v-card-title>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-toolbar>
-    </template>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="blue darken-1" text @click="close"
+                                    >Cancel</v-btn
+                                >
+                                <v-btn color="blue darken-1" text @click="save"
+                                    >Save</v-btn
+                                >
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                    <!----------------- Delete Table Data ------------------->
+                    <v-dialog v-model="dialogDelete" max-width="500px">
+                        <v-card>
+                            <v-card-title class="headline"
+                                >Are you sure you want to delete this
+                                item?</v-card-title
+                            >
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                    color="blue darken-1"
+                                    text
+                                    @click="closeDelete"
+                                    >Cancel</v-btn
+                                >
+                                <v-btn
+                                    color="blue darken-1"
+                                    text
+                                    @click="deleteItemConfirm"
+                                    >OK</v-btn
+                                >
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                </v-toolbar>
+            </template>
 
-    <template v-slot:item.actions="{ item }">
-      <!-- <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon> -->
-      <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
-    </template>
-    <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize">Reset</v-btn>
-    </template>
-  </v-data-table>
-  </div>
+            <template v-slot:item.actions="{ item }">
+                <!-- <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon> -->
+                <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
+            </template>
+            <template v-slot:no-data>
+                <v-btn color="primary" @click="initialize">Reset</v-btn>
+            </template>
+        </v-data-table>
+    </div>
 </template>
 <script>
-  export default {
+import { getBookingListApi, getChefProfileApi } from "../libs/api";
+export default {
     data: () => ({
-      dialog: false,
-      dialogDelete: false,
-      // data search
-      search: '',
-      //chef profile
-      avatar:
-        "https://www.epicure.com.au/wp-content/uploads/2017/08/ben_swinbourne_resized.png",
-      chefname:'Chef Name here',
-      experience: 'CV here',
-      introduction:'introduction here',
-      businessnumber:'Contact number here',
-      //booking list
-      headers: [
-        { text: 'Menu Title', value: 'menutitle' },
-        { text: 'Reservation Name List', value: 'fullname' },
-        { text: 'Booking Date', value: 'bookingdate' },
-        { text: 'Mobile', value: 'mobile' },
-        { text: 'Email', value: 'email' },
-        { text: 'Note', value: 'note' },
-        { text: 'Actions', value: 'actions', sortable: false },
-      ],
-      BookingCustomerList: [],
-      editedIndex: -1,
-      editedItem: {
-        menutitle: 'Image here',
-        firstname: '',
-        lastname: '',
-        bookingdate: 0,
-        mobile: 0,
-        email: 0,
-        note: 0,
-      },
-     defaultItem: {
-        menutitle: 'Image here',
-        firstname: '',
-        lastname: '',
-        bookingdate: 0,
-        mobile: 0,
-        email: 0,
-        note: 0,
-      },
+        dialog: false,
+        dialogDelete: false,
+        // data search
+        search: "",
+        //chef profile
+        avatar:
+            "https://www.epicure.com.au/wp-content/uploads/2017/08/ben_swinbourne_resized.png",
+        chefname : "Chef Name here",
+        experience: "CV here",
+        introduction: "introduction here",
+        businessnumber: "Contact number here",
+        //booking list
+        headers: [
+            { text: "Menu Title", value: "menutitle" },
+            { text: "Reservation Name List", value: "fullname" },
+            { text: "Booking Date", value: "bookingdate" },
+            { text: "Mobile", value: "mobile" },
+            { text: "Email", value: "email" },
+            { text: "Note", value: "note" },
+            { text: "Actions", value: "actions", sortable: false },
+        ],
+        BookingCustomerList: [],
+        editedIndex: -1,
+        editedItem: {
+            menutitle: "Image here",
+            firstname: "",
+            lastname: "",
+            bookingdate: 0,
+            mobile: 0,
+            email: 0,
+            note: 0,
+        },
+        defaultItem: {
+            menutitle: "Image here",
+            firstname: "",
+            lastname: "",
+            bookingdate: 0,
+            mobile: 0,
+            email: 0,
+            note: 0,
+        },
     }),
     computed: {
-      formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-      },
+        formTitle() {
+            return this.editedIndex === -1 ? "New Item" : "Edit Item";
+        },
     },
     watch: {
-      dialog (val) {
-        val || this.close()
-      },
-      dialogDelete (val) {
-        val || this.closeDelete()
-      },
+        dialog(val) {
+            val || this.close();
+        },
+        dialogDelete(val) {
+            val || this.closeDelete();
+        },
     },
-    created () {
-      this.initialize()
+    created() {
+        this.initialize();
     },
     methods: {
-      initialize () {
-        this.BookingCustomerList = [
-          {
-            menutitle:'Dinner Special Four Course',
-            fullname: 'Dain Hong',
-            // lastname: 'Hong',
-            bookingdate: '09/03/21',
-            mobile: '0400 000 000',
-            email: 'dainhong@gmail.com',
-            note: 'Dinner 6pm'
-          },
-          {
-            menutitle:'Dinner Special Three Course',
-            fullname: 'Wiwin NG',
-            // lastname: 'Kim ',
-            bookingdate: '10/03/21',
-            mobile: '0400 000 000',
-            email: 'dainhong@gmail.com',
-            note: 'Dinner 7pm'
-          },
-          {
-            menutitle:'High Tea Three Course',
-            fullname: 'Nancy Lee',
-            // lastname: 'Lee',
-            bookingdate: '09/03/21',
-                      mobile: '0400 000 000',
-            email: 'dainhong@gmail.com',
-            note: 'Lunch 12pm, celiac-glutenfree',
-          },
-          {
-            menutitle:'High Tea Three Course',
-            fullname: 'Jain Johnson',
-            // lastname: 'Huang',
-            bookingdate: '09/03/21',
-                    mobile: '0400 000 000',
-            email: 'dainhong@gmail.com',
-            note: 'Brunch 10:30am, 1 vegan'
-          },
-        ]
-      },
-      // editItem (item) {
-      //   this.editedIndex = this.BookingCustomerList.indexOf(item)
-      //   this.editedItem = Object.assign({}, item)
-      //   this.dialog = true
-      // },
-      deleteItem (item) {
-        this.editedIndex = this.BookingCustomerList.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialogDelete = true
-      },
-      deleteItemConfirm () {
-        this.BookingCustomerList.splice(this.editedIndex, 1)
-        this.closeDelete()
-      },
-      close () {
-        this.dialog = false
-        this.$nextTick(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        })
-      },
-      closeDelete () {
-        this.dialogDelete = false
-        this.$nextTick(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        })
-      },
-      // save () {
-      //   if (this.editedIndex > -1) {
-      //     Object.assign(this.BookingCustomerList[this.editedIndex], this.editedItem)
-      //   } else {
-      //     this.desserts.push(this.editedItem)
-      //   }
-      //   this.close()
-      // },
+        initialize() {
+            this.BookingCustomerList = [
+                {
+                    menutitle: "Dinner Special Four Course",
+                    fullname: "Dain Hong",
+                    // lastname: 'Hong',
+                    bookingdate: "09/03/21",
+                    mobile: "0400 000 000",
+                    email: "dainhong@gmail.com",
+                    note: "Dinner 6pm",
+                },
+                {
+                    menutitle: "Dinner Special Three Course",
+                    fullname: "Wiwin NG",
+                    // lastname: 'Kim ',
+                    bookingdate: "10/03/21",
+                    mobile: "0400 000 000",
+                    email: "dainhong@gmail.com",
+                    note: "Dinner 7pm",
+                },
+                {
+                    menutitle: "High Tea Three Course",
+                    fullname: "Nancy Lee",
+                    // lastname: 'Lee',
+                    bookingdate: "09/03/21",
+                    mobile: "0400 000 000",
+                    email: "dainhong@gmail.com",
+                    note: "Lunch 12pm, celiac-glutenfree",
+                },
+                {
+                    menutitle: "High Tea Three Course",
+                    fullname: "Jain Johnson",
+                    // lastname: 'Huang',
+                    bookingdate: "09/03/21",
+                    mobile: "0400 000 000",
+                    email: "dainhong@gmail.com",
+                    note: "Brunch 10:30am, 1 vegan",
+                },
+            ];
+        },
+        // editItem (item) {
+        //   this.editedIndex = this.BookingCustomerList.indexOf(item)
+        //   this.editedItem = Object.assign({}, item)
+        //   this.dialog = true
+        // },
+        deleteItem(item) {
+            this.editedIndex = this.BookingCustomerList.indexOf(item);
+            this.editedItem = Object.assign({}, item);
+            this.dialogDelete = true;
+        },
+        deleteItemConfirm() {
+            this.BookingCustomerList.splice(this.editedIndex, 1);
+            this.closeDelete();
+        },
+        close() {
+            this.dialog = false;
+            this.$nextTick(() => {
+                this.editedItem = Object.assign({}, this.defaultItem);
+                this.editedIndex = -1;
+            });
+        },
+        closeDelete() {
+            this.dialogDelete = false;
+            this.$nextTick(() => {
+                this.editedItem = Object.assign({}, this.defaultItem);
+                this.editedIndex = -1;
+            });
+        },
+        // save () {
+        //   if (this.editedIndex > -1) {
+        //     Object.assign(this.BookingCustomerList[this.editedIndex], this.editedItem)
+        //   } else {
+        //     this.desserts.push(this.editedItem)
+        //   }
+        //   this.close()
+        // },
     },
-  }
+    mounted() {
+        getBookingListApi()
+            .then((res) => {
+                this.$store.state.bookingCustomerList = res.data;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        getChefProfileApi().then((res) => {
+            const {
+                business_name,
+                business_number,
+                introduction,
+                experience,
+                identify_photo,
+            } = res.data;
+            this.avater = identify_photo;
+            this.chefname = business_name;
+            this.experience = experience;
+            this.introduction = introduction;
+            this.businessnumber = business_number;
+        });
+    },
+};
 </script>
