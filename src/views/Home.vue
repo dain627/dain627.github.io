@@ -15,7 +15,7 @@
           <v-col cols="12" style="text-align: center; margin:0 0 2em 0;">
             <!-- if access as login user, hide this button -->
          <v-btn v-if="accessToken == null" color="normal" @click="$router.push('/signup')">Get Stared Now</v-btn>
-        <h1 v-else color="normal" background="#E0E0E0">Welcome To Underground Dining World</h1>
+        <h1 v-else color="normal" style="color:white; text-shadow:1px 1px 6px #000;">Welcome To Underground Dining World</h1>
         </v-col>
         </v-row>
         </template>

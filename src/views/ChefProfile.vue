@@ -95,8 +95,8 @@ export default {
                 // axios.get('http://localhost:8090/api/user')
                 postChefProfileApi(new FormData(this.$refs.form.$el))
                     .then(function(response) {
+                        this.$router.push("/my");
                         alert("Your Profile is created!");
-                        // this.$router.push("/my");
                         console.log(response);
                     })
                     .catch(function(error) {

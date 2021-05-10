@@ -125,6 +125,7 @@ export default {
                 registerApi(new FormData(this.$refs.form.$el))
                     .then(() => {
                         this.$router.push("/login");
+                        alert("Thank you for joining us!");
                     })
                     .catch((error) => {
                         const errors = error.response.data.errors;
