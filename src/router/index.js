@@ -5,11 +5,14 @@ import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import BrowseDining from "../views/BrowseDining.vue";
 import PostDining from "../views/PostDining.vue";
+import ChefProfile from "../views/ChefProfile.vue";
 import MyDining from "../views/MyDining.vue";
 import BookDining from "../views/BookDining.vue";
 import Update from "../views/Update.vue";
-
-
+// import UserManage from "../views/UserManage.vue";
+// import DiningListManage from "../views/DiningListManage.vue";
+// import BookingManage from "../views/BookingManage.vue";
+import Admin from "../views/Admin.vue";
 
 Vue.use(VueRouter);
 
@@ -34,6 +37,11 @@ const routes = [{
         component: BrowseDining,
     },
     {
+        path: "/profile",
+        name: "ChefProfile",
+        component: ChefProfile,
+    },
+    {
         path: "/post",
         name: "PostDining",
         component: PostDining,
@@ -44,15 +52,20 @@ const routes = [{
         component: MyDining,
     },
     {
-        path: "/book",
+        path: "/book/:id",
         name: "BookDining",
         component: BookDining,
     },
     {
-        path: "/update",
+        path: "/update/:id",
         name: "Update",
         component: Update,
-    }
+    },
+    {
+        path: "/admin",
+        name: "adminPage",
+        component: Admin,
+    },
 ];
 
 const router = new VueRouter({
