@@ -380,12 +380,42 @@ export default {
         createUserA() {
             createUser(new FormData(this.$refs.form.$el)).then(() => {
                 console.log("complete");
-                // this.close();
-                // self.$router.push("/admin");
-                
+                this.close();
             });
         },
-       
+        // initialize() {
+        //     this.desserts = [
+        //         {
+        //             id: 5,
+        //             name: "Dain Hong",
+        //             calories: 159,
+        //             fat: 6.0,
+        //             carbs: 24,
+        //             protein: 4.0,
+        //         },
+        //         {
+        //             name: "Harry Potter",
+        //             calories: 237,
+        //             fat: 9.0,
+        //             carbs: 37,
+        //             protein: 4.3,
+        //         },
+        //         {
+        //             name: "Eric Clapton",
+        //             calories: 262,
+        //             fat: 16.0,
+        //             carbs: 23,
+        //             protein: 6.0,
+        //         },
+        //         {
+        //             name: "Zim Morison",
+        //             calories: 305,
+        //             fat: 3.7,
+        //             carbs: 67,
+        //             protein: 4.3,
+        //         },
+        //     ];
+        // },
 
         editItem(item) {
             this.editedIndex = this.desserts.indexOf(item);

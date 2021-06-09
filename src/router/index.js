@@ -61,21 +61,6 @@ const routes = [{
         name: "Update",
         component: Update,
     },
-    // {
-    //     path: "/admin_u",
-    //     name: "UserManage",
-    //     component: UserManage,
-    // },
-    // {
-    //     path: "/admin_d",
-    //     name: "DiningListManage",
-    //     component: DiningListManage,
-    // },
-    // {
-    //     path: "/admin_b",
-    //     name: "BookingManage",
-    //     component: BookingManage,
-    // },
     {
         path: "/admin",
         name: "adminPage",

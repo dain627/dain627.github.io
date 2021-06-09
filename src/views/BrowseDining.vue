@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-alert type="success" v-if="toggle == true"
-            >Your Dining Menu is deleted.</v-alert
+            >your Dining Menu is deleted.</v-alert
         >
         <!-- Rendering Dining table data -->
         <div v-if="$store.state.menuList.length >= 1">
