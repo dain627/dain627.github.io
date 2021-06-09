@@ -95,17 +95,12 @@ export default {
                                 JSON.stringify(response.data.loginedUser)
                             );
                             this.toggle = "clear";
-
-                            setTimeout(() => {
-                                this.toggle = "none";
-                                self.$router.push("/");
-                            },1000);
-                            return;
+                            self.$router.push("/");
                             // Vue.forceUpdate();
                         } else {
                             this.toggle = "error";
                         }
-                        setTimeout(() => (this.toggle = "none"), 1000);
+                        setTimeout(() => (this.toggle = "none"), 2000);
                         this.$store.state.isLogined = true;
                         this.loading = false;
                     })
@@ -118,7 +113,6 @@ export default {
                     });
             }
         },
-    
     },
 };
 </script>

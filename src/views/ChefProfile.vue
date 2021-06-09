@@ -101,10 +101,8 @@ export default {
                     .then((response) => {
                         console.log(response);
                         this.toggle = true;
-                        setTimeout(() => {
-                            this.toggle = false;
-                            this.$router.push("/my");
-                        }, 2000);
+                        setTimeout(() => (this.toggle = false), 2000);
+                        this.$router.push("/my");
                     })
                     .catch((error) => {
                         const errors = error.response.data.errors;
