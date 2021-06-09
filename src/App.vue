@@ -133,21 +133,22 @@
             </v-card-actions>
             </v-card>
             </v-dialog>
-
-
-
-
-
-
-
-            
+   
             <!--  switch Login/Logout button by user log state -->
-            <v-btn v-if="$store.state.isLogined" text @click="logout">
+            <!-- <v-btn v-if="$store.state.isLogined" text @click="logout">
                 Logout
             </v-btn>
             <v-btn v-else text @click="$router.push('/login')">
                 Login / Join
+            </v-btn> -->
+            
+            <v-btn v-if="accessToken == null" text @click="$router.push('/login')">
+                Login / Join
             </v-btn>
+             <v-btn v-else text @click="logout">
+                Logout
+            </v-btn>
+            
         </v-app-bar>
 
         <!-- Menu navigation action -->
@@ -159,7 +160,7 @@
             <v-divider></v-divider>
 
             <v-list dense>
-                <!--access the menu by JWT or non-JWT (user type *유저타입으로 변경하려면?)-->
+                <!--access the menu by User Type-->
                 <v-list-item
                     v-for="item in $store.state.isLogined == false
                         ? items
@@ -243,18 +244,6 @@ export default {
                 title: "Browse Dining",
                 link: "/browse",
             },
-            // {
-            //     title: "User Manage",
-            //     link: "/admin_u",
-            // },
-            // {
-            //     title: "DiningList Manage",
-            //     link: "/admin_d",
-            // },
-            // {
-            //     title: "Booking Manage",
-            //     link: "/admin_b",
-            // },
         ],
 
         acc_items: [
@@ -274,18 +263,7 @@ export default {
                 title: "Post Dining",
                 link: "/post",
             },
-            // {
-            //     title: "Manage User",
-            //     link: "/admin_u",
-            // },
-            // {
-            //     title: "Manage Dining",
-            //     link: "/admin_d",
-            // },
-            // {
-            //     title: "Manage Booking",
-            //     link: "/admin_b",
-            // },
+        
         ],
     }),
 

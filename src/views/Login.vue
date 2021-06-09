@@ -94,15 +94,6 @@ export default {
                                 "user_data",
                                 JSON.stringify(response.data.loginedUser)
                             );
-                    //              self.$router.push("/");
-                    //         alert("Welcome to UnderGrounf Dining World!");
-                    //         // Vue.forceUpdate();
-                    //     } else {
-                    //         alert("Check Your Username or Password !");
-                    //     }
-                    //     this.$store.state.isLogined = true;
-                    //     this.loading = false;
-                    // })
                             this.toggle = "clear";
 
                             setTimeout(() => {
