@@ -2,7 +2,7 @@ import axios from "axios";
 
 function request(props) {
     return axios({
-        url: `http://localhost:8090/${props.uri}`,
+        url: `http://localhost:1991/${props.uri}`,
         method: props.method,
         data: props.body,
         headers: props.headers,
@@ -31,7 +31,7 @@ export const logoutApi = () => {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        method: "POST",
+        method: "GET",
     });
 };
 
@@ -127,6 +127,9 @@ export const getBookingListApi = () => {
     return request({
         uri: "api/booking/chef",
         method: "GET",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
     });
 };
 
@@ -134,5 +137,50 @@ export const deleteBookingApi = (id) => {
     return request({
         uri: `api/booking/${id}`,
         method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+};
+
+export const createUser = (data) => {
+    return request({
+        uri: "api/user",
+        method: "POST",
+        body: data,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+};
+
+export const getUsers = () => {
+    return request({
+        uri: "api/user/users",
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+};
+
+export const updateUser = (data, id) => {
+    return request({
+        uri: `api/user/${id}`,
+        method: "POST",
+        body: data,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+};
+
+export const deleteUser = (id) => {
+    return request({
+        uri: `api/user/${id}`,
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
     });
 };

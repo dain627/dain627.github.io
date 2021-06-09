@@ -9,6 +9,10 @@ import ChefProfile from "../views/ChefProfile.vue";
 import MyDining from "../views/MyDining.vue";
 import BookDining from "../views/BookDining.vue";
 import Update from "../views/Update.vue";
+// import UserManage from "../views/UserManage.vue";
+// import DiningListManage from "../views/DiningListManage.vue";
+// import BookingManage from "../views/BookingManage.vue";
+import Admin from "../views/Admin.vue";
 
 Vue.use(VueRouter);
 
@@ -56,6 +60,26 @@ const routes = [{
         path: "/update/:id",
         name: "Update",
         component: Update,
+    },
+    // {
+    //     path: "/admin_u",
+    //     name: "UserManage",
+    //     component: UserManage,
+    // },
+    // {
+    //     path: "/admin_d",
+    //     name: "DiningListManage",
+    //     component: DiningListManage,
+    // },
+    // {
+    //     path: "/admin_b",
+    //     name: "BookingManage",
+    //     component: BookingManage,
+    // },
+    {
+        path: "/admin",
+        name: "adminPage",
+        component: Admin,
     },
 ];
 

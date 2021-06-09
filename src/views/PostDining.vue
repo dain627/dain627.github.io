@@ -1,92 +1,102 @@
 <template>
-    <v-container>
-        <v-row>
-            <v-col cols="12" style="text-align: center">
-                <h1>Post Dining</h1>
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col cols="12">
-                <!--  into Dining table -->
-                <v-form ref="form" v-model="valid" lazy-validation>
-                    <h3 class="mb-2" style="color: grey">Dining Menu Form</h3>
-                    <v-select
-                        name="dining_category"
-                        v-model="select"
-                        :items="items"
-                        :rules="[(v) => !!v || 'Item is required']"
-                        label="Dining Category"
-                        outlined
-                        required
-                    ></v-select>
-                    <v-text-field
-                        name="menu_image"
-                        v-model="image"
-                        :rules="requiredRules"
-                        label="Menu Image (url)"
-                        required
-                        outlined
-                    ></v-text-field>
-                    <v-text-field
-                        name="menu_title"
-                        v-model="title"
-                        :rules="requiredRules"
-                        label="Menu Title"
-                        required
-                        outlined
-                    ></v-text-field>
-                    <v-textarea
-                        name="menu_description"
-                        v-model="description"
-                        label="Menu List & Description"
-                        :rules="requiredRules"
-                        required
-                        outlined
-                    ></v-textarea>
-                    <v-text-field
-                        name="price"
-                        v-model="price"
-                        :rules="requiredRules"
-                        label="Price (AU)"
-                        required
-                        outlined
-                    ></v-text-field>
-                    <v-text-field
-                        name="location"
-                        v-model="location"
-                        :rules="requiredRules"
-                        label="Location"
-                        required
-                        outlined
-                    ></v-text-field>
-                    <v-subheader class="pa-0">
-                        Let customers know what your schedule looks like and
-                        when you are available to provide this service.
-                    </v-subheader>
-                    <v-textarea
-                        name="availability"
-                        v-model="availability"
-                        :rules="requiredRules"
-                        label="Set your Available Dining Date & Time"
-                        required
-                        outlined
-                    ></v-textarea>
-                    <v-alert
-                        border="top"
-                        colored-border
-                        type="info"
-                        elevation="2"
-                        color="orange"
-                    >
-                        Please note Customers will request to book your dining
-                        service. You’ll be notified of new booking requests and
-                        given the opportunity to confirm or reject the booking.
-                        You can ask questions and discuss requirements with the
-                        customer before making this decision.
-                    </v-alert>
-                    <!--i nto Chef Profile table -->
+    <div>
+        <v-alert
+            style="postion: fixed; width: 100%; z-index: 100;"
+            v-if="toggle == true"
+            type="success"
+            >Your Diningmenu is created!</v-alert
+        >
+        <v-container>
+            <v-row>
+                <v-col cols="12" style="text-align: center">
+                    <h1>Post Dining</h1>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="12">
+                    <!--  into Dining table -->
+                    <v-form ref="form" v-model="valid" lazy-validation>
+                        <h3 class="mb-2" style="color: grey">
+                            Dining Menu Form
+                        </h3>
+                        <v-select
+                            name="dining_category"
+                            v-model="select"
+                            :items="items"
+                            :rules="[(v) => !!v || 'Item is required']"
+                            label="Dining Category"
+                            outlined
+                            required
+                        ></v-select>
+                        <v-text-field
+                            name="menu_image"
+                            v-model="image"
+                            :rules="requiredRules"
+                            label="Menu Image (url)"
+                            required
+                            outlined
+                        ></v-text-field>
+                        <v-text-field
+                            name="menu_title"
+                            v-model="title"
+                            :rules="requiredRules"
+                            label="Menu Title"
+                            required
+                            outlined
+                        ></v-text-field>
+                        <v-textarea
+                            name="menu_description"
+                            v-model="description"
+                            label="Menu List & Description"
+                            :rules="requiredRules"
+                            required
+                            outlined
+                        ></v-textarea>
+                        <v-text-field
+                            name="price"
+                            v-model="price"
+                            :rules="requiredRules"
+                            label="Price (AU)"
+                            required
+                            outlined
+                        ></v-text-field>
+                        <v-text-field
+                            name="location"
+                            v-model="location"
+                            :rules="requiredRules"
+                            label="Location"
+                            required
+                            outlined
+                        ></v-text-field>
+                        <v-subheader class="pa-0">
+                            Let customers know what your schedule looks like and
+                            when you are available to provide this service.
+                        </v-subheader>
+                        <v-textarea
+                            name="availability"
+                            v-model="availability"
+                            :rules="requiredRules"
+                            label="Set your Available Dining Date & Time"
+                            required
+                            outlined
+                        ></v-textarea>
+                        <v-alert
+                            border="top"
+                            colored-border
+                            type="info"
+                            elevation="2"
+                            color="orange"
+                        >
+                            Please note Customers will request to book your
+                            dining service. You’ll be notified of new booking
+                            requests and given the opportunity to confirm or
+                            reject the booking. You can ask questions and
+                            discuss requirements with the customer before making
+                            this decision.
+                        </v-alert>
+                        <!--i nto Chef Profile table -->
 
-                    <!-- <h3 class="mb-2" style="color: grey">Chef Profile Form</h3>
+                        <!-- <h3 class="mb-2" style="color: grey">Chef Profile Form</h3>
 
           <v-text-field
             name="business_name"
@@ -120,7 +130,7 @@
             required
             outlined
           ></v-text-field> -->
-                    <!-- <v-text-field
+                        <!-- <v-text-field
             v-model="address"
             :rules="requiredRules"
             label="Address"
@@ -148,7 +158,7 @@
             required
             outlined
           ></v-text-field> -->
-                    <!-- <v-text-field
+                        <!-- <v-text-field
             name="identify_photo"
             v-model="photo"
             :rules="requiredRules"
@@ -156,20 +166,21 @@
             required
             outlined
           ></v-text-field> -->
-                    <div style="text-align: center">
-                        <v-btn
-                            :disabled="!valid"
-                            color="normal"
-                            class="mr-4"
-                            @click="validate"
-                        >
-                            Post
-                        </v-btn>
-                    </div>
-                </v-form>
-            </v-col>
-        </v-row>
-    </v-container>
+                        <div style="text-align: center">
+                            <v-btn
+                                :disabled="!valid"
+                                color="normal"
+                                class="mr-4"
+                                @click="validate"
+                            >
+                                Post
+                            </v-btn>
+                        </div>
+                    </v-form>
+                </v-col>
+            </v-row>
+        </v-container>
+    </div>
 </template>
 
 <script>
@@ -200,6 +211,7 @@ export default {
             "category5",
             "category6",
         ],
+        toggle: false,
     }),
 
     methods: {
@@ -210,7 +222,11 @@ export default {
                 postDiningMenuApi(new FormData(this.$refs.form.$el))
                     .then((response) => {
                         console.log(response);
-                        this.$router.push("/bowse");
+                        this.toggle = true;
+                        setTimeout(() => {
+                            this.toggle = false;
+                            this.$router.push("/browse");
+                        }, 2000);
                     })
                     .catch((error) => {
                         const errors = error.response.data.errors;

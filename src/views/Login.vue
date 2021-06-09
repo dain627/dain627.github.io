@@ -1,11 +1,20 @@
 <template>
     <v-container>
+        <v-alert v-if="toggle == 'clear'" type="success"
+            >Welcome to UnderGrounf Dining World!</v-alert
+        >
+        <v-alert v-if="toggle == 'error'" type="error"
+            >Check Your Username or Password !</v-alert
+        >
         <Loading v-if="loading" />
         <v-row class="my-6">
             <v-col cols="12" style="text-align: center">
                 <h1>Login</h1>
             </v-col>
         </v-row>
+        <!-- lazy-validation: Built in Vutify framework-->
+        <!-- If enabled, value will always be true unless there are visible validation errors. 
+        You can still call validate() to manually trigger validation -->
         <v-form ref="form" v-model="valid" lazy-validation>
             <v-text-field
                 v-model="name"
@@ -63,11 +72,13 @@ export default {
                 "Password must be more than 8 characters",
         ],
         loading: false,
+        toggle: "none",
     }),
     components: { Loading },
     methods: {
         validate() {
             const isValid = this.$refs.form.validate();
+            // this.$refs.form.validate() will validate all inputs and return if they are all valid or not.
             if (isValid) {
                 const self = this;
                 const formData = new FormData(this.$refs.form.$el);
@@ -77,19 +88,19 @@ export default {
                         if (response.data.login) {
                             // save the user log state(as JWT) in browser(chrome) storage instead of SESSION
                             //(method) Storage.setItem(key: string, value: string)
+                            console.log(response);
                             localStorage.setItem("token", response.data.token);
                             localStorage.setItem(
                                 "user_data",
                                 JSON.stringify(response.data.loginedUser)
                             );
-                            //  this.loading = true;
+                            this.toggle = "clear";
                             self.$router.push("/");
-                            // *로그인후(토큰발급) 메인홈화면으로 라우팅 됐을때, 로그아웃버튼과 메뉴바 변경적용이 바로 안되고 새로고침후 적용됨.
-                            // this.forceUpdate();
                             // Vue.forceUpdate();
                         } else {
-                            alert("Check Your Username or Password !");
+                            this.toggle = "error";
                         }
+                        setTimeout(() => (this.toggle = "none"), 2000);
                         this.$store.state.isLogined = true;
                         this.loading = false;
                     })
@@ -100,13 +111,8 @@ export default {
                             alert(errors[Object.keys(errors)[0]][0]);
                         }
                     });
-                // this.$router.push("/login");
             }
         },
-        // reset() {
-        //   this.$refs.form.reset();
-        //   this.$refs.form.resetValidation();
-        // },
     },
 };
 </script>

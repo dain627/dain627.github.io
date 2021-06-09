@@ -1,5 +1,8 @@
 <template>
     <v-container>
+        <v-alert v-if="toggle == true" type="success"
+            >Thank you for joining us!</v-alert
+        >
         <v-row class="my-6">
             <v-col cols="12" style="text-align: center">
                 <h1>Register</h1>
@@ -116,6 +119,7 @@ export default {
         contact: "",
         select: null,
         items: ["chef", "customer"],
+        toggle: false,
     }),
 
     methods: {
@@ -124,8 +128,11 @@ export default {
             if (isValid) {
                 registerApi(new FormData(this.$refs.form.$el))
                     .then(() => {
-                        this.$router.push("/login");
-                        alert("Thank you for joining us!");
+                        this.toggle = true;
+                        setTimeout(() => {
+                            this.toggle = false;
+                            this.$router.push("/login");
+                        }, 2000);
                     })
                     .catch((error) => {
                         const errors = error.response.data.errors;
