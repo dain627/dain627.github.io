@@ -157,13 +157,17 @@ export default {
 import { bookingApi } from "../libs/api";
 export default {
     data: () => ({
+        date: new Date().toISOString().substr(0, 10),
         valid: true,
         fullname: "",
         mobile: "",
         email: "",
         datetime: "",
+        available:"",
         requiredRules: [(v) => !!v || "This field is required"],
         toggle: false,
+        modal: false,
+        
     }),
 
     methods: {

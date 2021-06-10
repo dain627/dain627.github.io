@@ -12,20 +12,15 @@ Entities: Users, Chef_Profiles, Dining-Lists, Bookings
 
 # Github Address
 ```
-Frontend: 
-Backend: 
+Frontend: https://github.com/dain627/ugbooking-app-frontend
+Backend: https://github.com/dain627/ugbooking-app-backend
 ```
 
 ## Deployed Online
 ```
-Web app is deployed on 'url' using Cloud web hosting services (AWS Ec2(Infrastructuree as a service or heroku-as platform as service) (Apache , Nginx)
+Web app will deploy on Cloud web hosting services (AWS Ec2(Infrastructuree as a service or heroku-as platform as service) 
 ```
 
-## Installation Guidance
-
-```
-change api address in var api = "http://localhost:8090/" in libs/api/index.js;
-```
 
 ## Business Rules
 ```
@@ -43,6 +38,23 @@ change api address in var api = "http://localhost:8090/" in libs/api/index.js;
 - An Admin has full permissions to CRUD any user account, the information of dining lists(future function), and booking lists(future function).
 ```
 
+## Technologies
+```
+The website decouples the frontend (Vue.js framework) and the backend (Laravel framework). 
+The web app is for membership use.  Anonymous users need to register to use this service. ​Registered members will use the web app to browse dining, post dining, and dining booking. 
+Admin panel is for admin staff to manage the User data, dining menu data, and booking data.
+Web Service will support the activities by user type, and users must authenticate(as JWT) to use all web functions.
+The APIs are developed by Laravel framework (^8.12"). It is base on PHP(7.4).
+Frontend is developed by Vue.js("^2.6.11") integrated with Axios("^0.21.1") and vue-router("^3.5.1").
+and also, it is using Vutify(^2.4.0") to build up the web layout
+```
+
+## Security
+```
+Logging feature that accounts for every request with IP, browser, timestamp and action and record them in the database and txt document
+Rate limit to control one request per second per user session
+Limit per session request to 500 in a 24hour period
+```
 ## To do next (Roadmap)
 ```
 - Update all of the form components for image upload to use the file upload box instead of the URL. 
@@ -54,27 +66,3 @@ change api address in var api = "http://localhost:8090/" in libs/api/index.js;
 
 
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-# vue-project.github.io
-# vue-project.github.io

@@ -1,9 +1,7 @@
 import axios from "axios";
 
 function request(props) {
-    console.log("ASD");
     return axios({
-        // url: `https://warm-snail-86.loca.lt/${props.uri}`,
         url: `http://localhost:1991/${props.uri}`,
         method: props.method,
         data: props.body,
@@ -20,7 +18,6 @@ export const loginApi = (data) => {
 };
 
 export const registerApi = (data) => {
-    console.log(data);
     return request({
         uri: "api/user",
         body: data,

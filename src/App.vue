@@ -11,8 +11,8 @@
             <v-btn icon @click="toggle_dark_mode">
                 <v-icon>mdi-theme-light-dark</v-icon>
             </v-btn>
-            
-            <!--  Help Guide  -->
+
+             <!--  Help Guide  -->
             <v-dialog
             v-model="dialog"
             fullscreen
@@ -133,17 +133,14 @@
             </v-card-actions>
             </v-card>
             </v-dialog>
-   
+
             <!--  switch Login/Logout button by user log state -->
             <v-btn v-if="$store.state.isLogined" text @click="logout">
                 Logout
             </v-btn>
             <v-btn v-else text @click="$router.push('/login')">
                 Login / Join
-            </v-btn> 
-            
-          
-            
+            </v-btn>
         </v-app-bar>
 
         <!-- Menu navigation action -->
@@ -155,7 +152,7 @@
             <v-divider></v-divider>
 
             <v-list dense>
-                <!--access the menu by User Type-->
+                <!--access the menu by JWT or non-JWT (user type *유저타입으로 변경하려면?)-->
                 <v-list-item
                     v-for="item in $store.state.isLogined == false
                         ? items

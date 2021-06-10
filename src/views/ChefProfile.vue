@@ -81,7 +81,7 @@ export default {
         bnameRules: [
             (v) => !!v || "Business Name is required",
             (v) =>
-                (v && v.length <= 12) ||
+                (v && v.length <= 10) ||
                 "Business Name must be less than 10 characters",
         ],
         experience: "",
@@ -101,10 +101,8 @@ export default {
                     .then((response) => {
                         console.log(response);
                         this.toggle = true;
-                        setTimeout(() => {
-                            this.toggle = false;
-                            this.$router.push("/my");
-                        }, 2000);
+                        setTimeout(() => (this.toggle = false), 2000);
+                        this.$router.push("/my");
                     })
                     .catch((error) => {
                         const errors = error.response.data.errors;
