@@ -34,7 +34,7 @@ export const logoutApi = () => {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        method: "POST",
+        method: "GET",
     });
 };
 
